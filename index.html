@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://kit.fontawesome.com/5fb839083e.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#icon').click(function(){
+                $('ul').toggleClass('show');
+            });
+        });
+    </script>
+    <title>My Website</title>
+</head>
+<body>
+    <nav> 
+        <img class="logo" src="logo.jpg" width="60px" alt="">
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="ourprofile.html">Our Profile</a></li>
+            <li><a href="">Achievement</a></li>
+            <li><a href="#mus">Message Us</a></li>
+        </ul>
+        <label id="icon">
+            <i class="fas fa-bars"></i>
+        </label>
+    </nav>
+    
+    <div class="main-content">
+        <p>Halo <span id="nama"></span>, Selamat Datang Di Website Ku</p>
+    </div>
+    <script>
+        var name = prompt("Masukan nama kamu");
+        document.getElementById("nama").innerText = name;
+    </script>
+    
+    <section id="slider">
+        <div class="container">
+        <div class="content-slide">
+            <div class="imgslide fade">
+                <img class="img-slideshow" src="https://source.unsplash.com/random/1366x768?landscape&sig=1" alt=""/>
+            </div>
+            
+            <div class="imgslide fade">
+                <img class="img-slideshow" src="https://source.unsplash.com/random/1366x768?landscape&sig=2" alt=""/> 
+            </div>
+            <div class="imgslide fade">
+                <img class="img-slideshow" src="https://source.unsplash.com/random/1366x768?landscape&sig=3" alt=""/>
+            </div>
+
+            <a class="prev" onclick="nextslide (-1) ">&#10094;</a>
+            <a class="next" onclick="nextslide (1) ">&#10095;</a>
+        </div>
+    </div>
+    <script>
+        var slideIndex = 1;
+            showSlide(slideIndex);
+
+        function nextslide(n){
+            showSlide(slideIndex += n);
+        }
+
+        function showSlide(n) {
+            var i;
+            var slides = document.getElementsByClassName('imgslide');
+
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            
+            slides[slideIndex - 1].style.display = 'block';
+
+        }
+
+        setInterval(() => {
+            nextslide[1];
+        },1000)
+    </script> 
+    </section>
+    <hr style="margin: 0px 0px; height: 3px; opacity: 0.5">
+    
+    <div class="round-pict">
+        <div class="group">
+            <img src="logo.jpg" width="200px" alt="">
+            <img src="logo.jpg" width="200px" alt="">
+            <img src="logo.jpg" width="200px" alt="">
+        </div>
+        
+    </div>
+
+
+<div class="box-all" id="mus">
+    <div class="box-input">
+        <div class="box-inside">
+            <div class="col2">
+                <h3>Message Us</h3>    
+            </div>
+            
+            <div class="col3">
+                <div class="form-output">
+                    <form name="message-form" onsubmit="return validateForm()">
+
+                    Nama : <input class="name-box" placeholder="Nama" type="text" name="full-name"/>
+                    <br />
+
+                    Tanggal Lahir :
+                    <input class="date-box" type="date" name="birth-date"/>
+                    <br />
+
+                    Jenis Kelamin :<br> 
+                    <input class="male-box"type="radio" id="male" name="gender" value="Laki-laki"/>
+                    <label for="male">Laki-laki</label>
+                    <br>
+                    <input class="female-box"type="radio" id="female" name="gender" value="Perempuan"/>
+                    <label for="female">Perempuan</label>
+                    <br />
+
+                    Pesan : <br>
+                    <textarea class="text-box" placeholder="Pesan" name="messages"></textarea>
+                    <br />
+                    <input class="btn-submit" type="submit" value="submit"/>  
+                    </form>
+                </div>    
+            </div>
+        </div>
+    </div>
+    
+    <div class="box-output">
+        <h4>Data Anda</h4>
+			<div class="form-output">
+                <p>Nama: <span id="sender-full-name"></span></p>
+                <p>Tanggal: <span id="sender-birth-date"></span></p>
+                <p>Jenis Kelamin: <span id="sender-gender"></span></p>
+                <p>Pesan: <span id="sender-messages"></span></p>
+            </div>
+    </div>
+</div>
+
+    <script>
+        function validateForm() {
+            var name = document.forms['message-form']['full-name'].value;
+            var BirthDate = document.forms['message-form']['birth-date'].value;
+            var gender = document.forms['message-form']['gender'].value;
+            var messages = document.forms['message-form']['messages'].value;
+
+            if (name == '' ||  BirthDate == '' || gender == '' || messages == ''){
+                alert('Input Tidak Boleh Kosong');
+                return false;
+            }
+
+            setSenderUI(name, BirthDate, gender, messages);
+            return false;
+        }
+        function setSenderUI(name, BirthDate, gender, messages) {
+            document.getElementById('sender-full-name').innerHTML = name
+            document.getElementById('sender-birth-date').innerHTML = BirthDate
+            document.getElementById('sender-gender').innerHTML = gender
+            document.getElementById('sender-messages').innerHTML = messages
+        }
+    </script>
+    </section>
+    <footer>
+        <center>
+        <span>Copyright @Sean Andrianto</span>
+        </center>
+    </footer>
+</body>
+
+</html>
